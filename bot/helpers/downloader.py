@@ -10,7 +10,7 @@ from bot import DOWNLOAD_DIRECTORY, LOGGER
 
 def download_file(url, dl_path):
   try:
-    dl = SmartDL(url, dl_path, progress_bar=False)
+    dl = SmartDL(url, dl_path, progress_bar=True)
     LOGGER.info(f'Downloading: {url} in {dl_path}')
     dl.start()
     return True, dl.get_dest()
@@ -27,7 +27,7 @@ def download_file(url, dl_path):
 def utube_dl(link):
   ytdl_opts = {
     'outtmpl' : os.path.join(DOWNLOAD_DIRECTORY, '%(title)s [%(id)s]'),
-    'noplaylist' : True,
+    'noplaylist' : False,
     'logger': LOGGER,
     'format': 'bestvideo+bestaudio/best',
     'geo_bypass_country': 'IN'
